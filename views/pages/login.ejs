@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>hWellness - Login</title>
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/loginRegi.css" rel="stylesheet">
+	
+</head>
+
+<body>
+	<div class="d-flex container" style="width: fit-content;">
+		<div class="m-auto d-none d-sm-block" style="width: 400px;">
+			<img src="/images/loginimg.gif" width="100%" height="auto">
+		</div>
+		<form id='signInForm' style="width: 350px;">
+			<div class="p-4">
+				<div class="row">
+					<div class="col mb-3">
+						<h1 class="text-primary text-center">Sign In</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col mb-1">
+						<label class="text-primary" for="userName">Username : </label>
+						<input tabindex="1" type="text" name="username" id="username" placeholder="username" class="form-control border-primary">
+						<span class="errorSpan usernameError"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col mb-2">
+						<label class="text-primary" for="password">Password : </label>
+						<input type="password" tabindex="2" name="password" id="password" placeholder="password" class="form-control border-primary">
+						<span class="errorSpan passwordError"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col mb-3">
+						<input type="button" tabindex="3" class="btn btn-primary w-100" id="signInBtn" value="Sign In">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col mb-3">
+						<input type="reset" tabindex="4" class="btn btn-outline-danger w-100" value="Clear">
+					</div>
+				</div>
+
+				<div class="row">	
+					<div class="col mb-3 col text-center">
+						<a href="/registation" tabindex="5">Create New Account?</a><br>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+<script src="/js/authentication.js"></script>
+
+</html>

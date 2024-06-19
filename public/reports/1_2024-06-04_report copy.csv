@@ -1,0 +1,8 @@
+Id,Start Date,End Date,Time,Recurrence,Day Of Week,Add Date
+1,2024-06-03,2024-06-03,12:15:00,oto,,Mon Jun 03 2024 11:41:52 GMT+0530 (India Standard Time)
+2,2024-06-03,2024-06-03,12:15:00,oto,,Mon Jun 03 2024 11:42:57 GMT+0530 (India Standard Time)
+3,2024-06-02,2024-06-05,12:31:00,daily,,Mon Jun 03 2024 12:30:13 GMT+0530 (India Standard Time)
+4,2024-06-02,2024-06-05,12:32:00,weekly,monday,Mon Jun 03 2024 12:31:50 GMT+0530 (India Standard Time)
+5,2024-06-02,2024-06-06,14:24:00,daily,,Mon Jun 03 2024 14:23:01 GMT+0530 (India Standard Time)
+6,2024-06-02,2024-06-06,13:20:00,daily,,Mon Jun 03 2024 15:35:55 GMT+0530 (India Standard Time)
+7,2024-06-03,2024-06-03,15:38:00,oto,,Mon Jun 03 2024 15:37:58 GMT+0530 (India Standard Time)
