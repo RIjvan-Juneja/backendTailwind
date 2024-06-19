@@ -2,8 +2,7 @@ const sendMail = require("../services/sendMail");
 const bcrypt = require('bcryptjs');
 const db = require("../models/index");
 
-const addMedication = async (req, res) => {
-  console.log(req.body,"++++++++++++");
+const addMedication = async (req, res) => { 
   try {
     let data;
     // TODO: code quality update
@@ -31,7 +30,7 @@ const addMedication = async (req, res) => {
 const displayMedication = async (req,res) => {
   try {
     const medications = await db.Medication.findAll({
-      attributes : [['file_path', 'image'],'name','notes','start_date', 'end_date','time', 'recurrence', 'day_of_week'],
+      attributes : ['id',['file_path', 'image'],'name','notes','start_date', 'end_date','time', 'recurrence', 'day_of_week'],
       where : {
         user_id : req.user.id || 0
       }
@@ -43,4 +42,47 @@ const displayMedication = async (req,res) => {
   }
 }
 
-module.exports = { addMedication, displayMedication };
+const deleteMedication = async (req, res) => {
+  try {
+    const id = req.params.id || 0;
+    const medication = await db.Medication.findByPk(id);
+    console.log(medication,id);
+    if (medication) {
+      await medication.destroy({ force: true });
+      return res.status(200).send(medication);
+    } else {
+      return  res.status(400).send({ status: "User Not Found", msg: "Data Not Awailable" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Internal Server Error", msg: "An unexpected error occurred while processing your request" });
+  }
+}
+
+const updateMedication = async (req, res) => {
+  try {
+    const id = req.params.id || 0;
+    let data = {
+      user_id: req.user.id, 
+      name: req.body.name,  
+      notes:req.body.note, 
+      file_path: "https://res.cloudinary.com/dn8qn0rvj/image/upload/v1717650024/uploads/image-1717650023764.jpg", 
+      start_date: req.body.start_date, 
+      end_date: req.body.start_date, 
+      time: req.body.time, 
+      recurrence: (req.body.form_type != 'oto')? req.body.routing : 'oto',  // daily, weekly or oto(one time only)
+      day_of_week: (req.body.routing == 'weekly')? req.body.day : null,
+    }
+    await db.Medication.update(data,{
+      where : {
+        id : id
+      }
+    })
+    return res.status(200).send({status : 'success'});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Internal Server Error", msg: "An unexpected error occurred while processing your request" });
+  }
+}
+
+module.exports = { addMedication, displayMedication, deleteMedication };
