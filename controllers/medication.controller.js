@@ -18,7 +18,7 @@ const addMedication = async (req, res) => {
         recurrence: (req.body.form_type != 'oto')? req.body.routing : 'oto',  // daily, weekly or oto(one time only)
         day_of_week: (req.body.routing == 'weekly')? req.body.day : null,
       }
-    
+    console.log(data);
     db.Medication.create(data);
     res.status(200).send({ status: 'Added successfully' });
 
@@ -47,7 +47,6 @@ const deleteMedication = async (req, res) => {
   try {
     const id = req.params.id || 0;
     const medication = await db.Medication.findByPk(id);
-    console.log(medication,id);
     if (medication) {
       await medication.destroy({ force: true });
       return res.status(200).send({status : "deleted Successfully"});
@@ -61,6 +60,7 @@ const deleteMedication = async (req, res) => {
 }
 
 const updateMedication = async (req, res) => {
+  console.log(req.body,"----------------");
   try {
     const medicationId = req.params.id || 0;
     let data = {
@@ -74,6 +74,7 @@ const updateMedication = async (req, res) => {
       recurrence: (req.body.form_type != 'oto')? req.body.routing : 'oto',  // daily, weekly or oto(one time only)
       day_of_week: (req.body.routing == 'weekly')? req.body.day : null,
     }
+    console.log(data);
     await db.Medication.update(data,{
       where : {
         id : medicationId
