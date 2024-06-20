@@ -20,7 +20,7 @@ const addMedication = async (req, res) => {
       }
     
     db.Medication.create(data);
-    res.status(200).send({ status: 'ok' });
+    res.status(200).send({ status: 'Added successfully' });
 
   } catch (error) {
     console.log(error);
@@ -50,9 +50,9 @@ const deleteMedication = async (req, res) => {
     console.log(medication,id);
     if (medication) {
       await medication.destroy({ force: true });
-      return res.status(200).send(medication);
+      return res.status(200).send({status : "deleted Successfully"});
     } else {
-      return  res.status(400).send({ status: "User Not Found", msg: "Data Not Awailable" });
+      return  res.status(400).send({ status: "Data Not Found", msg: "Data Not Awailable" });
     }
   } catch (error) {
     console.log(error);
@@ -79,7 +79,7 @@ const updateMedication = async (req, res) => {
         id : medicationId
       }
     })
-    return res.status(200).send({status : 'success'});
+    return res.status(200).send({status : 'updated successfully'});
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: "Internal Server Error", msg: "An unexpected error occurred while processing your request" });
@@ -97,6 +97,7 @@ const fetchDataForUpdate = async (req,res) => {
     });
 
     if (medication) {
+      console.log(medication);
       return res.status(200).send(medication);
     } else {
       return  res.status(400).send({ status: "Data Not Found", msg: "Data Not Awailable" });
@@ -107,4 +108,4 @@ const fetchDataForUpdate = async (req,res) => {
   }
 }
 
-module.exports = { addMedication, displayMedication, deleteMedication, fetchDataForUpdate };
+module.exports = { addMedication, displayMedication, deleteMedication, fetchDataForUpdate, updateMedication };

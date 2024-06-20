@@ -15,6 +15,7 @@ panelRouter.post('/medication/api/list',authMiddleware,medication.displayMedicat
 panelRouter.post('/medication/api/add',authMiddleware,medication.addMedication);
 panelRouter.post('/medication/api/delete/:id',authMiddleware,medication.deleteMedication);
 panelRouter.post('/medication/api/fetch/:id',authMiddleware,medication.fetchDataForUpdate);
+panelRouter.post('/medication/api/update/:id',authMiddleware,medication.updateMedication);
 panelRouter.post('/reports/api',authMiddleware,reports.userReports);
 panelRouter.post('/sessions/api',authMiddleware,sessions.activeUser);
 panelRouter.get('/medicationlog/mark/:secretKey',medicationlog.markAsDone);
