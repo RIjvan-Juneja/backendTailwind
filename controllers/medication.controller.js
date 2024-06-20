@@ -1,6 +1,7 @@
 const sendMail = require("../services/sendMail");
 const bcrypt = require('bcryptjs');
 const db = require("../models/index");
+const { where } = require("sequelize");
 
 const addMedication = async (req, res) => { 
   try {
@@ -61,7 +62,7 @@ const deleteMedication = async (req, res) => {
 
 const updateMedication = async (req, res) => {
   try {
-    const id = req.params.id || 0;
+    const medicationId = req.params.id || 0;
     let data = {
       user_id: req.user.id, 
       name: req.body.name,  
@@ -75,7 +76,7 @@ const updateMedication = async (req, res) => {
     }
     await db.Medication.update(data,{
       where : {
-        id : id
+        id : medicationId
       }
     })
     return res.status(200).send({status : 'success'});
@@ -85,4 +86,25 @@ const updateMedication = async (req, res) => {
   }
 }
 
-module.exports = { addMedication, displayMedication, deleteMedication };
+const fetchDataForUpdate = async (req,res) => {
+  try {
+    const id = req.params.id || 0;
+    const medication = await db.Medication.findOne({
+      where : {
+        id : id,
+        user_id : req.user.id || 0,
+      }
+    });
+
+    if (medication) {
+      return res.status(200).send(medication);
+    } else {
+      return  res.status(400).send({ status: "Data Not Found", msg: "Data Not Awailable" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Internal Server Error", msg: "An unexpected error occurred while processing your request" });
+  }
+}
+
+module.exports = { addMedication, displayMedication, deleteMedication, fetchDataForUpdate };
