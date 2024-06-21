@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap CSS -->
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="/bootstrapicons/bootstrap-icons.min.css"> -->
+
+  <title>hWellness</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/formCss.css" />
+
+</head>
+
+<body>
+  <div class="preloader">
+    <img src="/images/loader.gif" alt="preloader">
+  </div>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <%- include('../components/sidebar.ejs'); %>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper" class="vh-100 overflow-scroll">
+        <%- include('../components/header.ejs'); %>
+          <div class="container-fluid px-4">
+            <!-- breadcrumb for path  -->
+            <nav aria-label="breadcrumb my-4">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/medication">Medications</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Medication</li>
+              </ol>
+            </nav>
+
+            <!-- heading -->
+            <div class="mb-3">
+              <h3 class="fs-4 mb-3 d-inline-block">Add Medication</h3>
+            </div>
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pill-tab-0" data-bs-toggle="pill" href="#pill-tabpanel-0" role="tab"
+                  aria-controls="pill-tabpanel-0" aria-selected="true">Recurring</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pill-tab-1" data-bs-toggle="pill" href="#pill-tabpanel-1" role="tab"
+                  aria-controls="pill-tabpanel-1" aria-selected="false">One Time Only </a>
+              </li>
+
+            </ul>
+            <div class="tab-content py-3 mt-2">
+
+              <!-- Recurring form -->
+              <div class="tab-pane active" id="pill-tabpanel-0" role="tabpanel" aria-labelledby="pill-tab-0">
+                <div class="p-2 bg-white shadow-sm rounded">
+                  <div class="m-4">
+                    <form id="recurringForm">
+                      <div class="row g-3">
+                        <h5>Recurring</h5>
+
+                        <div class="col-4">
+                          <label for="name" class="form-label">Name </label>
+                          <input type="text" class="form-control" placeholder="Enter Medication name" id="name" name="name">
+                          <span class="nameError errorSpan"></span>
+                        </div>
+
+                        <div class="col-8">
+                          <label for="notes" class="form-label">Notes  </label>
+                          <input type="text" class="form-control" placeholder="Enter Notes" id="notes" name="note">
+                          <span class="noteError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="routing" class="form-label">Select Routing </label>
+                          <select class="form-select" id="routing" name="routing">
+                            <option value="">select.....</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                          </select>
+                          <span class="routingError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="time" class="form-label">Time</label>
+                          <input type="time" class="form-control" placeholder="Time in 24 hours" id="time" name="time">
+                          <span class="timeError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="day" class="form-label" id="dayLable">Day </label>
+                          <select class="form-select" id="day" name="day">
+                            <option value="">Select.....</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="saturday">Saturday</option>
+                            <option value="sunday">Sunday</option>
+                          </select>
+                          <span class="dayError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="otoData" class="form-label">Start Date </label>
+                          <input type="date" class="form-control" placeholder="start date" id="startDate" name="start_date">
+                          <span class="startDateError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="otoData" class="form-label">End Date </label>
+                          <input type="date" class="form-control" placeholder="end date" id="endDate" name="end_date">
+                          <span class="endDateError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="image" class="form-label">Image </label>
+                          <input class="form-control" type="file" name="image" id="rImage">
+                          <span class="rImageError errorSpan"></span>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col text-end">
+                          <button type="button" id="recurringBtn" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!--  one time only form -->
+              <div class="tab-pane" id="pill-tabpanel-1" role="tabpanel" aria-labelledby="pill-tab-1">
+                <div class="p-2 bg-white shadow-sm rounded">
+                  <div class="m-4">
+                    <form id="otoForm">
+                      <div class="row g-3">
+                        <h5>One Time Only</h5>
+
+                        <div class="col-4">
+                          <label for="oName" class="form-label">Name </label>
+                          <input type="text" class="form-control" placeholder="Enter Medication name" id="oName" name="name">
+                          <span class="oNameError errorSpan"></span>
+                        </div>
+
+                        <div class="col-8">
+                          <label for="oNotes" class="form-label">Notes  </label>
+                          <input type="text" class="form-control" placeholder="Enter Notes" id="oNotes" name="note">
+                          <span class="oNotesError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="otoDate" class="form-label">Date </label>
+                          <input type="date" class="form-control" id="otoDate" name="start_date">
+                          <span class="otoDateError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="otoTime" class="form-label">Time</label>
+                          <input type="time" class="form-control" placeholder="Time in 24 hours" id="otoTime" name="time">
+                          <span class="otoTimeError errorSpan"></span>
+                        </div>
+
+                        <div class="col-4">
+                          <label for="image" class="form-label">Image </label>
+                          <input class="form-control" type="file" name="image" id="otoImage">
+                          <span class="otoImageError errorSpan"></span>
+                        </div> 
+
+                      </div>
+                      <div class="row">
+                        <div class="col text-end">
+                          <button type="button" class="btn btn-primary" id="otoBtn">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+  <script src="/js/formJs.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelector(".side-heading").innerHTML = 'Add Medication';
+    document.querySelector(`#medicationAdd`).classList.add("active");
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh
+}
+
+.container {
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  margin: auto;
+}
+
+.errorSpan {
+  color: red;
+  font-size: 14px;
+  margin: 3px;
+}
