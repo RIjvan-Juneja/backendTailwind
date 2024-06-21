@@ -6,7 +6,7 @@ const parser = require("../middleware/cloudinaryFileUpload");
 const reports = require("../controllers/reports.controller");
 const sessions = require("../controllers/sessions.controller");
 const medicationlog = require("../controllers/medicationLog.controller");
-require("../controllers/notification");
+// require("../controllers/notification");
 // require("../controllers/worker");
 
 // ==================== Panel ===================== //
